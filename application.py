@@ -10,7 +10,8 @@ def index():
     f.closed
     return text
 
-@application.route("/log"):
+@application.route("/log")
+def log_msg():
     try:
         message = request.args.get("msg")
     except:
