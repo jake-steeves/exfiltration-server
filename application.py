@@ -21,7 +21,7 @@ def log_msg():
         timestamp = datetime.datetime.now().strftime("%H:%M %m/%d/%y")
         with open("static/messages.txt", "a+") as f:
             f.write(addr + " - " + timestamp + "\n")
-            f.write(msg + "\n\n")
+            f.write(message + "\n\n")
         f.closed
     
         return "message logged"
