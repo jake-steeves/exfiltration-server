@@ -19,6 +19,13 @@ def log_msg():
     else:
         addr = request.remote_addr
         timestamp = datetime.datetime.now().strftime("%H:%M %m/%d/%y")
+        hour = int(timestamp[:2])
+        if hour < 5:
+            new_hour = 24 - (5 - hour)
+        else:
+            new_hour - hour - 5
+
+        timestamp = new_hour + timestamp[2:]
         with open("static/messages.txt", "a+") as f:
             f.write(addr + " - " + timestamp + "\n")
             f.write(message + "\n\n")
