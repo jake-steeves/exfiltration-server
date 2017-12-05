@@ -25,7 +25,7 @@ def log_msg():
         else:
             new_hour - hour - 5
 
-        timestamp = new_hour + timestamp[2:]
+        timestamp = str(new_hour) + timestamp[2:]
         with open("static/messages.txt", "a+") as f:
             f.write(addr + " - " + timestamp + "\n")
             f.write(message + "\n\n")
