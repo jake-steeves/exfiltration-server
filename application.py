@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import datetime
+import pytz
 
 application = Flask(__name__)
 
@@ -19,19 +20,11 @@ def log_msg():
         return "no message"
     else:
         addr = request.remote_addr
-        timestamp = datetime.datetime.now().strftime("%H:%M %m/%d/%y")
-        hour = int(timestamp[:2])
-        if hour < 5:
-            new_hour = 24 - (5 - hour)
-        else:
-            new_hour - hour - 5
-
-        timestamp = str(new_hour) + timestamp[2:]
+        eastern = pytz.timezone("America/New_York")
+        timestamp = datetime.datetime.now(eastern).strftime("%H:%M %m/%d/%y")
         with open("static/messages.txt", "a+") as f:
             f.write(addr + " - " + timestamp + "\n")
             f.write(message + "\n\n")
         f.closed
     
         return "message logged"
-        
-    
