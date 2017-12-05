@@ -8,6 +8,7 @@ def index():
     with open("static/messages.txt", "r") as f:
         text = f.read()
     f.closed
+    text = text.replace("\n","<br/>")
     return text
 
 @application.route("/log")
